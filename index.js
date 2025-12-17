@@ -974,8 +974,12 @@ function setupEventListeners() {
                     "Desde que você chegou, tudo ficou mais bonito",
                     "Minha melhor amiga sempre",
                     "Cada dia com você é especial!",
+                    "Você é o motivo do meu sorriso bobo todos os dias",
+                    "Obrigado por existir e por dividir a vida comigo",
                     "Você é meu porto seguro, e a melhor coisa que já aconteceu em minha vida...",
                     "Se eu pudesse escolher de novo, escolheria você todas as vezes",
+                    "Você é a coincidência mais perfeita que o destino já me trouxe",
+                    "Meu coração é inteiro seu. Hoje, amanhã e sempre",
                     "Te amo mais que tudo neste mundo. Feliz Natal!⭐"
                 ];
                 
