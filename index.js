@@ -971,10 +971,12 @@ function setupEventListeners() {
             if (message) {
                 const messages = [
                     "Você é o melhor presente que eu poderia ter! ❤️",
-                    "Meu melhor amigo sempre",
+                    "Desde que você chegou, tudo ficou mais bonito",
+                    "Minha melhor amiga sempre",
                     "Cada dia com você é especial!",
                     "Você é meu porto seguro, e a melhor coisa que já aconteceu em minha vida...",
-                    "Te amo mais que tudo neste mundo. Feliz Natal! ⭐"
+                    "Se eu pudesse escolher de novo, escolheria você todas as vezes",
+                    "Te amo mais que tudo neste mundo. Feliz Natal!⭐"
                 ];
                 
                 message.textContent = messages[Math.floor(Math.random() * messages.length)];
