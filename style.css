@@ -65,6 +65,10 @@ body.theme-4 {
     background: linear-gradient(135deg, #a855f7 0%, #6366f1 40%, #0ea5e9 100%);
 }
 
+body.theme-5 {
+    background: linear-gradient(135deg, #3a0936 0%, #1a4447 100%);
+}
+
 /* Efeito de brilho de fundo */
 body::before {
     content: '';
