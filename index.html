@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Natal, Meu Amor!❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎄</text></svg>">
+</head>
+<body class="theme-1">
+    <div class="container">
+        <!-- Cabeçalho -->
+        <button id="toggleThemeBtn" class="toggle-theme-btn">
+            🎨 Mudar fundo
+        </button>
+        <header class="header">
+            <h1><i class="fas fa-star"></i> Feliz Natal! <i class="fas fa-star"></i></h1>
+            <p class="subtitle">Um cartão especial para a melhor namorada do mundo! ❤️</p>
+        </header>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <!-- Canvas para Neve e Árvore -->
+            <div class="canvas-container">
+                <canvas id="snowCanvas"></canvas>
+                <canvas id="treeCanvas"></canvas>
+                
+                <!-- Container das Luzes -->
+                <div class="luzes-container" id="luzesContainer"></div>
+                
+                <!-- Controles Interativos -->
+                <div class="controls">
+                    <button id="changeLights" class="btn">
+                        <i class="fas fa-lightbulb"></i> Trocar Luzes
+                    </button>
+                    <button id="addOrnament" class="btn">
+                        <i class="fas fa-plus-circle"></i> Adicionar Enfeite
+                    </button>
+                    <button id="surpriseBtn" class="btn surprise">
+                        <i class="fas fa-gift"></i> Surpresa Especial!
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mensagens -->
+            <div class="messages">
+                <div class="message-card" id="message1">
+                    <h3><i class="fas fa-code"></i> Para a melhor namorada e parceira de todas</h3>
+                    <p>Que seu Natal seja cheio de amor e muito carinho, você merece tudo de bom. Eu te amo!</p>
+                </div>
+                
+                <div class="message-card" id="message2">
+                    <h3><i class="fas fa-heart"></i> Mensagem Secreta</h3>
+                    <p id="secretMessage">Clique na estrela no topo da árvore! ✨</p>
+                </div>
+
+                <!-- Contador Regressivo -->
+                <div class="countdown">
+                    <h3><i class="fas fa-clock"></i> Contagem para o Natal</h3>
+                    <div class="countdown-timer">
+                        <div class="time-unit">
+                            <span id="days">00</span>
+                            <small>Dias</small>
+                        </div>
+                        <div class="time-unit">
+                            <span id="hours">00</span>
+                            <small>Horas</small>
+                        </div>
+                        <div class="time-unit">
+                            <span id="minutes">00</span>
+                            <small>Minutos</small>
+                        </div>
+                        <div class="time-unit">
+                            <span id="seconds">00</span>
+                            <small>Segundos</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Player de Música -->
+            <div class="music-player">
+                <button id="musicToggle" class="music-btn">
+                    <i class="fas fa-play"></i> Música Natalina
+                </button>
+                <audio id="backgroundMusic" loop>
+                    <source src="itens_importantes/Christmas Village - Aaron Kenny.mp3" type="audio/mpeg">
+                    Seu navegador não suporta áudio HTML5.
+                </audio>
+            </div>
+        </main>
+
+        <!-- Rodapé com Mensagem Personalizada -->
+        <footer class="footer">
+            <p>Feito com <i class="fas fa-heart heart-beat"></i> e <i class="fas fa-code"></i> especialmente para você</p>
+            <p class="signature"> Com todo meu amor, João Pedro </p>
+            
+            <!-- Easter Egg para Devs -->
+            <div class="easter-egg">
+                <button id="devEgg" class="dev-btn">
+                    <i class="fas fa-terminal"></i> Modo Dev
+                </button>
+                <pre id="codeOutput" class="hidden">
+<span class="comment">// Código do nosso amor</span>
+<span class="keyword">function</span> <span class="function">Natal</span>() {
+    <span class="keyword">const</span> amor = <span class="string">"infinito"</span>;
+    <span class="keyword">const</span> felicidade = <span class="string">"exponencial"</span>;
+    
+    <span class="keyword">while</span> (<span class="constant">true</span>) {
+        <span class="function">celebrarJuntos</span>();
+        <span class="function">criarMemorias</span>();
+        amor *= <span class="number">2</span>; <span class="comment">// Cresce exponencialmente! ❤️</span>
+    }
+}</pre>
+
+    <!-- Botão para Foto Especial -->
+        <button id="fotoBtn" class="foto-btn">
+            <i>Clique aqui ❤️</i>
+        </button>
+    </div>
+
+    <!-- Popup da Foto Especial -->
+    <div id="fotoPopup" class="foto-popup hidden">
+        <div class="foto-content">
+            <button id="fecharFotoBtn" class="fechar-popup-btn">
+                <i class="fas fa-times"></i>
+            </button>
+            <img src="itens_importantes/nossas-fotos.png" alt="Nossa foto" id="fotoImagem">
+            <p>Para o amor da minha vida!<br>Cada momento com você é especial.<br>Te amo mais que tudo! 🥰</p>
+    
+            <a href="itens_importantes/nossas-fotos.png" download="nossas-fotos.png" class="btn-download">
+                Baixar fotos ❤️
+            </a>
+            <button id="closePhotoBtn" class="btn-fechar">
+                Fechar ❤️
+            </button>
+        </div>
+    </div>
+           
+    <!-- Áudio para efeitos sonoros -->
+    <audio id="ornamentSound" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA=="></audio>
+
+    <script src="index.js"></script>
+</body>
+</html>
