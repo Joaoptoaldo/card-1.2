@@ -15,7 +15,7 @@
     z-index: 1100;
     padding: 8px 16px;
     border-radius: 25px;
-    border: 2px solid #FFD700;
+    border: 2px solid rgba(255, 215, 0, 0.3);
     background: rgba(255, 255, 255, 0.2);
     color: #fff;
     font-size: 16px;
