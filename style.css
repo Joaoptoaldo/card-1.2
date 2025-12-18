@@ -7,16 +7,17 @@
 
 /* Botão de troca de fundo */
 .toggle-theme-btn {
+    font-family: 'Mountains of Christmas', cursive;
     position: fixed;
     top: 15px;
     right: 15px;
     z-index: 1100;
     padding: 8px 16px;
-    border-radius: 20px;
-    border: none;
+    border-radius: 25px;
+    border: 2px solid #FFD700;
     background: rgba(255, 255, 255, 0.2);
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 21px;
     cursor: pointer;
     backdrop-filter: blur(6px);
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
@@ -69,6 +70,10 @@ body.theme-5 {
     background: linear-gradient(135deg, #3a0936 0%, #1a4447 100%);
 }
 
+body.theme-6 {
+    background: linear-gradient(135deg, #971313cc 0%, #4313f1 100%);
+}
+
 /* Efeito de brilho de fundo */
 body::before {
     content: '';
@@ -104,6 +109,7 @@ body::before {
     font-size: 3.5rem;
     color: #FFD700;
     text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    margin-top: 20px;
     margin-bottom: 15px;
     letter-spacing: 2px;
 }
