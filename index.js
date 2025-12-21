@@ -70,28 +70,104 @@ let starClicked = false;
 let animationId = null;
 let starPosition = null;
 
+// =============== SISTEMA DE PARTÍCULAS DO CABEÇALHO ===============
+function initHeaderParticles() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'header-particles';
+    particlesContainer.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 1;
+    `;
+    header.style.position = 'relative';
+    header.appendChild(particlesContainer);
+
+    // Criar partículas
+    for (let i = 0; i < 25; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'header-particle';
+        particle.style.cssText = `
+            position: absolute;
+            width: ${Math.random() * 4 + 2}px;
+            height: ${Math.random() * 4 + 2}px;
+            background: radial-gradient(circle, rgba(255, 215, 0, ${Math.random() * 0.6 + 0.4}), transparent);
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: floatParticle ${Math.random() * 8 + 6}s ease-in-out infinite;
+            animation-delay: ${Math.random() * 5}s;
+            opacity: ${Math.random() * 0.8 + 0.2};
+        `;
+
+        // Adicionar brilho sutil
+        particle.style.boxShadow = `0 0 ${Math.random() * 8 + 4}px rgba(255, 215, 0, ${Math.random() * 0.5 + 0.3})`;
+
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// =============== ANIMAÇÕES DE SCROLL ===============
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-visible');
+            }
+        });
+    }, observerOptions);
+
+    // Observar seções para fade-in
+    const sections = document.querySelectorAll('.messages, .countdown, .music-player, .footer');
+    sections.forEach(section => {
+        section.classList.add('fade-in');
+        observer.observe(section);
+    });
+
+    // Efeito parallax no fundo usando CSS variables
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        document.body.style.setProperty('--scroll-y', scrollY);
+    });
+}
+
 // =============== INICIALIZAÇÃO ===============
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🎄 Cartão de Natal carregando...');
-    
+
     // Inicializar sistemas
     initFotoSistema();
     initSnowCanvas();
     initTreeCanvas();
+    initHeaderParticles();
+    initScrollAnimations();
     setupEventListeners();
     startCountdown();
     animate();
-    
+
     // Aguardar a árvore ser desenhada antes de criar as luzes
     setTimeout(() => {
         initLuzes();
     }, 500);
-    
+
     // Verificar inicialização
     setTimeout(() => {
         console.log('✅ Cartão de Natal carregado! Feliz Natal! ❤️');
         console.log('💡 Luzes criadas:', document.querySelectorAll('.luz-natal').length);
         console.log('❄️ Flocos de neve:', snowflakes.length);
+        console.log('✨ Partículas do cabeçalho:', document.querySelectorAll('.header-particle').length);
     }, 1000);
 });
 

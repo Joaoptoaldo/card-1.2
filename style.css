@@ -7,7 +7,7 @@
 
 /* Botão de troca de fundo */
 .toggle-theme-btn {
-    font-family: 'Poppins', sans-serif;
+   /*font-family: 'Poppins', sans-serif;*/
     position: fixed;
     top: 20px;
     right: 20px;
@@ -17,7 +17,7 @@
     border: 2px solid rgba(255, 215, 0, 0.4);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     backdrop-filter: blur(12px);
@@ -61,7 +61,7 @@ body.theme-2 {
 
 /* Tema 3 – natal clássico (vermelho + dourado) */
 body.theme-3 {
-    background: linear-gradient(135deg, #b91c1c 0%, #f97316 40%, #facc15 100%);
+    background: linear-gradient(135deg, #300101 0%, #f97316 40%, #facc15 100%);
 }
 
 /* Tema 4 – neve suave (roxinho pastel) */
@@ -701,7 +701,7 @@ body::before {
     padding: 40px 20px 20px;
     margin-top: 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-  /*  position: relative;
+    /*position: relative;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
     backdrop-filter: blur(10px);
     border-radius: 20px 20px 0 0;
@@ -733,7 +733,8 @@ body::before {
     background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.02), transparent);
     animation: footerShimmer 6s ease-in-out infinite;
     pointer-events: none;
-}*/
+    */
+}
 
 .footer p {
     margin: 10px 0;
@@ -1039,6 +1040,48 @@ body::before {
 @keyframes slideOut {
     from { transform: translateX(0); opacity: 1; }
     to { transform: translateX(100%); opacity: 0; }
+}
+
+/* =============== PARTICLE ANIMATIONS =============== */
+@keyframes floatParticle {
+    0%, 100% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px) rotate(90deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-10px) translateX(-5px) rotate(180deg);
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(-25px) translateX(-10px) rotate(270deg);
+        opacity: 0.6;
+    }
+}
+
+/* =============== SCROLL ANIMATIONS =============== */
+/*.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =============== PARALLAX EFFECT =============== */
+/*body {
+    --scroll-y: 0;
+}
+
+body::before {
+    transform: translateY(calc(var(--scroll-y) * 0.3px));
+    transition: transform 0.1s ease-out;
 }
 
 /* =============== RESPONSIVIDADE =============== */
