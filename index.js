@@ -29,7 +29,7 @@ const toggleThemeBtn = document.getElementById('toggleThemeBtn');
 const body = document.body;
 
 // Lista de temas disponíveis
-const themes = ['theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5' , 'theme-6'];
+const themes = ['theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6'];
 
 function getCurrentThemeIndex() {
   return themes.findIndex(theme => body.classList.contains(theme));
@@ -41,16 +41,15 @@ function setTheme(index) {
   const theme = themes[index];
   body.classList.add(theme);
 
-  // Atualiza o texto do botão
-  const nextIndex = (index + 1) % themes.length;
-  const label = nextIndex + 1; // 1..4
-  toggleThemeBtn.textContent = `🎨 Fundo ${label}`;
+  // Atualiza o texto do botão com o tema atual
+  const currentLabel = index + 1;
+  toggleThemeBtn.textContent = `🎨 Fundo ${currentLabel}`;
 }
 
 // Inicializa, caso o body esteja sem classe (segurança extra)
 if (getCurrentThemeIndex() === -1) {
   body.classList.add('theme-1');
-  toggleThemeBtn.textContent = '🎨 Fundo 2';
+  toggleThemeBtn.textContent = '🎨 Fundo 1';
 }
 
 if (toggleThemeBtn) {
