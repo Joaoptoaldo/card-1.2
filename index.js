@@ -200,7 +200,7 @@ function initFotoSistema() {
         }, 300);
         
         setTimeout(() => {
-            this.innerHTML = '<i class="fas fa-camera"></i> Nossa Foto Especial';
+            this.innerHTML = '<i class="fas fa-camera"></i> Nossas Fotos';
             this.style.background = 'linear-gradient(135deg, #FF69B4, #C71585)';
         }, 3000);
     });
