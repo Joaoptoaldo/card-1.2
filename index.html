@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Natal, Meu Amor!❤️</title>
+    <title>Feliz Natal, meu amor!❤️</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,30 +18,37 @@
             🎨 Mudar Fundo
         </button>
         <header class="header">
-            <h1><i class="fas fa-star"></i> Feliz Natal! <i class="fas fa-star"></i></h1>
-            <p class="subtitle">Um cartão especial para a melhor namorada do mundo!❤️</p>
+            <h1>
+                <i class="fas fa-star"></i> Feliz Natal! <i class="fas fa-star"></i>
+            </h1>
+            <p class="subtitle">
+                Um cartão especial para a melhor namorada do mundo!❤️
+            </p>
         </header>
 
-        <!-- Conteúdo Principal -->
+        <!-- Conteúdo principal -->
         <main class="main-content">
-            <!-- Canvas para Neve e Árvore -->
+            <!-- Canvas para neve e árvore -->
             <div class="canvas-container">
                 <canvas id="snowCanvas"></canvas>
                 <canvas id="treeCanvas"></canvas>
                 
-                <!-- Container das Luzes -->
+                <!-- Container das luzes -->
                 <div class="luzes-container" id="luzesContainer"></div>
                 
-                <!-- Controles Interativos -->
+                <!-- Controles interativos -->
                 <div class="controls">
                     <button id="changeLights" class="btn">
-                        <i class="fas fa-lightbulb"></i> Trocar Luzes
+                        <i class="fas fa-lightbulb"></i> 
+                            Trocar Luzes
                     </button>
                     <button id="addOrnament" class="btn">
-                        <i class="fas fa-plus-circle"></i> Adicionar Enfeite
+                        <i class="fas fa-plus-circle"></i> 
+                            Adicionar Enfeite
                     </button>
                     <button id="surpriseBtn" class="btn surprise">
-                        <i class="fas fa-gift"></i> Surpresa Especial!
+                        <i class="fas fa-gift"></i> 
+                            Surpresa Especial!
                     </button>
                 </div>
             </div>
@@ -49,8 +56,12 @@
             <!-- Mensagens -->
             <div class="messages">
                 <div class="message-card" id="message1">
-                    <h3><i class="fas fa-code"></i> Para a melhor namorada e parceira de todas</h3>
-                    <p>Que seu Natal seja cheio de amor e muito carinho, você merece tudo de bom. Eu te amo!</p>
+                    <h3>
+                        <i class="fas fa-code"></i> Para a melhor namorada e parceira de todas
+                    </h3>
+                    <p>
+                        Que seu Natal seja cheio de amor e muito carinho, você merece tudo de bom. Eu te amo!
+                    </p>
                 </div>
                 
                 <div class="message-card" id="message2">
@@ -58,9 +69,12 @@
                     <p id="secretMessage">Clique na estrela no topo da árvore! ✨</p>
                 </div>
 
-                <!-- Contador Regressivo -->
+
+                <!-- Contador regressivo -->
                 <div class="countdown">
-                    <h3><i class="fas fa-clock"></i> Contagem para o Natal</h3>
+                    <h3><i class="fas fa-clock"></i>
+                         Contagem para o Natal
+                    </h3>
                     <div class="countdown-timer">
                         <div class="time-unit">
                             <span id="days">00</span>
@@ -82,36 +96,61 @@
                 </div>
             </div>
 
-            <!-- Player de Música -->
+            <!-- Seção de Jogos -->
+            <div class="jogos-section">
+                <h2><i class="fas fa-gamepad"></i> Joguinho</h2>
+                
+                <!-- Jogo 1: Encontre os Presentes -->
+                <div class="jogo-card" id="jogoPresentes">
+                    <h3><i class="fas fa-search"></i> Encontre os Presentes Escondidos</h3>
+                    <p>Clique nos presentes escondidos na tela!</p>
+                    <div class="jogo-info">
+                        <div class="contador-jogo">
+                            <span id="contadorPresentes">0</span>/3 encontrados
+                        </div>
+                        <button id="iniciarJogoPresentes" class="btn-jogo">
+                            <i class="fas fa-play"></i> Iniciar Jogo
+                        </button>
+                    </div>
+                    <div id="areaJogo"></div>
+                </div>
+            </div>
+
+            <!-- Player de música -->
             <div class="music-player">
                 <button id="musicToggle" class="music-btn">
                     <i class="fas fa-play"></i> Música Natalina
                 </button>
                 <audio id="backgroundMusic" loop>
                     <source src="itens_importantes/Christmas Village - Aaron Kenny.mp3" type="audio/mpeg">
-                    Seu navegador não suporta áudio HTML5.
+                        Seu navegador não suporta áudio HTML5.
                 </audio>
             </div>
         </main>
 
-        <!-- Rodapé com Mensagem Personalizada -->
+        <!-- Rodapé com mensagem -->
         <footer class="footer">
             <p>Feito com <i class="fas fa-heart heart-beat"></i> e <i class="fas fa-code"></i> especialmente para você</p>
-            <p class="signature"> Com todo meu amor, João Pedro </p>
+            <p class="signature"> 
+                Com todo meu amor, João Pedro 
+            </p>
             
-            <!-- Easter Egg para Devs -->
+            <!-- Devs -->
             <div class="easter-egg">
                 <button id="devEgg" class="dev-btn">
                     <i class="fas fa-terminal"></i> Modo Dev
                 </button>
             </div>
         </footer>
+<<<<<<< HEAD
                 <pre id="codeOutput" class="hidden">
+=======
+<pre id="codeOutput" class="hidden">
+>>>>>>> 9d84ec4 (update)
 <span class="comment">// Código do nosso amor</span>
 <span class="keyword">function</span> <span class="function">Natal</span>() {
     <span class="keyword">const</span> amor = <span class="string">"infinito"</span>;
     <span class="keyword">const</span> felicidade = <span class="string">"exponencial"</span>;
-    
     <span class="keyword">while</span> (<span class="constant">true</span>) {
         <span class="function">celebrarConquistas</span>();
         <span class="function">criarMemorias</span>();
@@ -119,13 +158,13 @@
     }
 }</pre>
 
-    <!-- Botão para Foto Especial -->
+    <!-- Botão pra foto -->
         <button id="fotoBtn" class="foto-btn">
             <i>Clique Aqui ❤️</i>
         </button>
     </div>
 
-    <!-- Popup da Foto Especial -->
+    <!-- Popup da foto -->
     <div id="fotoPopup" class="foto-popup hidden">
         <div class="foto-content">
             <button id="fecharFotoBtn" class="fechar-popup-btn">
@@ -134,8 +173,9 @@
             <a href="itens_importantes/nossas-fotos.png" target="_blank">
                 <img src="itens_importantes/nossas-fotos.png" alt="Nossa foto" id="fotoImagem">
             </a>
-            <p>Para o amor da minha vida!<br>Cada momento com você é especial.<br>Te amo mais que tudo! 🥰</p>
-    
+            <p>
+                Para o amor da minha vida!<br>Cada momento com você é especial.<br>Te amo mais que tudo! 🥰
+            </p>
             <a href="itens_importantes/nossas-fotos.png" download="nossas-fotos.png" class="btn-download">
                 Baixar fotos ❤️
             </a>
@@ -145,9 +185,10 @@
         </div>
     </div>
            
-    <!-- Áudio para efeitos sonoros -->
+    <!-- Áudio pra efeitos sonoros -->
     <audio id="ornamentSound" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA=="></audio>
 
     <script src="index.js"></script>
+
 </body>
 </html>

@@ -70,7 +70,15 @@ let starClicked = false;
 let animationId = null;
 let starPosition = null;
 
-// =============== SISTEMA DE PARTÍCULAS DO CABEÇALHO ===============
+// Variáveis para Jogos
+let presentesEncontrados = 0;
+let jogoAtivo = false;
+let cartasMemoria = [];
+let cartaVirada = null;
+let paresEncontrados = 0;
+let pontosMemoria = 0;
+
+// =============== SISTEMA DO CABEÇALHO ===============
 function initHeaderParticles() {
     const header = document.querySelector('.header');
     if (!header) return;
@@ -87,6 +95,7 @@ function initHeaderParticles() {
         overflow: hidden;
         z-index: 1;
     `;
+
     header.style.position = 'relative';
     header.appendChild(particlesContainer);
 
@@ -154,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeaderParticles();
     initScrollAnimations();
     setupEventListeners();
+    iniciarJogos();
     startCountdown();
     animate();
 
@@ -171,7 +181,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
 });
 
-// =============== SISTEMA DE FOTO ESPECIAL ===============
+
+// =============== SISTEMA DA FOTO ===============
 function initFotoSistema() {
     const fotoBtn = document.getElementById('fotoBtn');
     const fotoPopup = document.getElementById('fotoPopup');
@@ -213,7 +224,7 @@ function initFotoSistema() {
         });
     }
     
-    // Fechar com botão "Fechar ❤️"
+    // Fechar com botão 
     if (closePhotoBtn) {
         closePhotoBtn.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -320,6 +331,154 @@ function initSnowCanvas() {
         }
     };
 }
+
+// =============== JOGOS INTERATIVOS ===============
+function iniciarJogos() {
+    // Jogo 1: Encontrar Presentes
+    const iniciarJogoPresentesBtn = document.getElementById('iniciarJogoPresentes');
+    if (iniciarJogoPresentesBtn) {
+        iniciarJogoPresentesBtn.addEventListener('click', iniciarJogoPresentes);
+    }
+}
+
+// Jogo 1: Encontrar Presentes
+function iniciarJogoPresentes() {
+    if (jogoAtivo) return;
+    
+    jogoAtivo = true;
+    presentesEncontrados = 0;
+    atualizarContadorPresentes();
+    
+    const areaJogo = document.getElementById('areaJogo');
+    if (!areaJogo) return;
+    
+    areaJogo.innerHTML = '';
+    areaJogo.style.minHeight = '200px';
+    
+    // Criar 3 presentes escondidos
+    const presentes = [
+        { emoji: '🎁', mensagem: 'Encontrou um presente especial! Você ganhou 10 pontos de amor! 💖' },
+        { emoji: '🍪', mensagem: 'Biscoitos de Natal! Deliciosos e cheios de amor! 🍪' },
+        { emoji: '⭐', mensagem: 'Uma estrela brilhante para iluminar seu Natal! ✨' }
+    ];
+    
+    presentes.forEach((presente, index) => {
+        const elementoPresente = document.createElement('div');
+        elementoPresente.className = 'presente-escondido';
+        elementoPresente.innerHTML = presente.emoji;
+        elementoPresente.style.fontSize = '30px';
+        elementoPresente.style.position = 'absolute';
+        
+        // Posição aleatória
+        const areaWidth = areaJogo.clientWidth - 50;
+        const areaHeight = areaJogo.clientHeight - 50;
+        const x = Math.random() * areaWidth;
+        const y = Math.random() * areaHeight;
+        
+        elementoPresente.style.left = `${x}px`;
+        elementoPresente.style.top = `${y}px`;
+        
+        elementoPresente.addEventListener('click', function() {
+            if (this.classList.contains('encontrado')) return;
+            
+            this.classList.add('encontrado');
+            this.style.transform = 'scale(1.5)';
+            this.style.opacity = '0.7';
+            this.style.cursor = 'default';
+            
+            presentesEncontrados++;
+            atualizarContadorPresentes();
+            
+            // Efeitos
+            createConfetti();
+            mostrarMensagemTemporaria(presente.mensagem);
+            playOrnamentSound();
+            
+            // Verificar se completou o jogo
+            if (presentesEncontrados === presentes.length) {
+                setTimeout(() => {
+                    mostrarMensagemTemporaria('🎉 Parabéns! Você encontrou todos os presentes! 🏆');
+                    jogoAtivo = false;
+                }, 1000);
+            }
+        });
+        
+        areaJogo.appendChild(elementoPresente);
+    });
+    
+    mostrarMensagemTemporaria('🔍 Encontre os 3 presentes escondidos! Clique neles!');
+}
+
+function atualizarContadorPresentes() {
+    const contadorElement = document.getElementById('contadorPresentes');
+    if (contadorElement) {
+        contadorElement.textContent = presentesEncontrados;
+    
+    }
+}
+
+function atualizarPontosMemoria() {
+    const pontosElement = document.getElementById('pontosMemoria');
+    if (pontosElement) {
+        pontosElement.textContent = pontosMemoria;
+    }
+}
+
+// =============== NEVE ===============
+function initSnowCanvas() {
+    const canvas = document.getElementById('snowCanvas');
+    if (!canvas) {
+        console.error('❌ Canvas da neve não encontrado!');
+        return;
+    }
+    
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+        const container = canvas.parentElement;
+        canvas.width = container.clientWidth;
+        canvas.height = container.clientHeight;
+    }
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    // Criar flocos de neve
+    for (let i = 0; i < config.snow.count; i++) {
+        snowflakes.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * config.snow.size + 1,
+            speed: Math.random() * config.snow.speed + 0.5,
+            opacity: Math.random() * 0.5 + 0.5,
+            sway: Math.random() * 0.5 - 0.25
+        });
+    }
+    
+    window.drawSnow = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        for (const flake of snowflakes) {
+            flake.y += flake.speed;
+            flake.x += flake.sway;
+            
+            if (flake.y > canvas.height) {
+                flake.y = 0;
+                flake.x = Math.random() * canvas.width;
+            }
+            
+            if (flake.x > canvas.width) flake.x = 0;
+            if (flake.x < 0) flake.x = canvas.width;
+            
+            ctx.beginPath();
+            ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${flake.opacity})`;
+            ctx.fill();
+        }
+    };
+}
+
+
 // =============== LUZES DE NATAL ===============
 function initLuzes() {
     const container = document.getElementById('luzesContainer');
@@ -420,10 +579,10 @@ function initLuzes() {
     
     // Adicionar 4 luzes extras em pontos críticos para manter formato
     const pontosCriticos = [
-        { angle: 0, name: "Topo" },     // 0° - Topo
-        { angle: 90, name: "Direita" }, // 90° - Direita
-        { angle: 180, name: "Baixo" },  // 180° - Baixo
-        { angle: 270, name: "Esquerda" } // 270° - Esquerda
+        { angle: 0, name: "Topo" },         // 0° - Topo
+        { angle: 90, name: "Direita" },     // 90° - Direita
+        { angle: 180, name: "Baixo" },      // 180° - Baixo
+        { angle: 270, name: "Esquerda" }    // 270° - Esquerda
     ];
     
     pontosCriticos.forEach((ponto, index) => {
@@ -468,7 +627,7 @@ function initLuzes() {
         }
     }, 3000);
 }
-// =============== ÁRVORE DE NATAL ===============
+// =============== ÁRVORE ===============
 function initTreeCanvas() {
     const canvas = document.getElementById('treeCanvas');
     if (!canvas) {
@@ -737,7 +896,7 @@ function initTreeCanvas() {
     window.drawTree();
 }
 
-// =============== ÁRVORE DE NATAL ===============
+// =============== ÁRVORE ===============
 function initTreeCanvas() {
     const canvas = document.getElementById('treeCanvas');
     if (!canvas) {
@@ -1160,7 +1319,6 @@ function revealSecretMessage() {
         message.innerHTML = `
             <span style="color:#FFD700">✨ MENSAGEM SECRETA ✨</span><br><br>
             Meu amor, você é a estrela mais brilhante da minha vida!<br>
-            Que nosso amor seja eterno como o Natal no coração.<br>
             <span style="color:#FF69B4">Te amo mais que tudo! ❤️</span><br><br>
             <small>Você merece todo o amor do mundo!</small>
         `;
@@ -1349,12 +1507,12 @@ window.addEventListener('beforeunload', function() {
     }
 });
 
-// ----- Lógica de abrir/fechar popup  -----
+// Lógica de abrir/fechar popup 
 const fotoPopup = document.getElementById('fotoPopup');
 const fecharFotoBtn = document.getElementById('fecharFotoBtn');
 const closePhotoBtn = document.getElementById('closePhotoBtn');
 
-// BOTÃO QUE ABRE O POPUP (ajuste o ID se for outro)
+// BOTÃO QUE ABRE O POPUP 
 const abrirFotoBtn = document.getElementById('abrirFotoBtn'); // opcional
 
 if (abrirFotoBtn) {
@@ -1377,18 +1535,18 @@ fotoPopup.addEventListener('click', (e) => {
   }
 });
 
-// ----- FORÇAR DOWNLOAD DA IMAGEM -----
+// FORÇAR DOWNLOAD DA IMAGEM 
 const downloadLink = document.querySelector('.btn-download');
 const fotoImg = document.getElementById('fotoImagem');
 
 if (downloadLink && fotoImg) {
   downloadLink.addEventListener('click', function (e) {
-    e.preventDefault(); // impede o comportamento padrão
+    e.preventDefault(); 
 
-    const url = fotoImg.src; // usa o mesmo src da imagem
+    const url = fotoImg.src; 
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'nossas-fotos.png'; // nome do arquivo baixado
+    a.download = 'nossas-fotos.png'; 
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
